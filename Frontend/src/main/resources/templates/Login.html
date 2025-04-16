@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng Nhập</title>
+    <!-- FontAwesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Sử dụng file CSS chuyên biệt cho giao diện auth -->
+    <link rel="stylesheet" href="/css/auth.css">
+    <script defer src="/js/auth.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<div class="auth-container">
+    <div class="auth-card">
+        <!-- Logo vuông đặt ở trên cùng -->
+        <img src="/images/logo2.png" alt="Logo" class="logo">
+        <h2>Đăng Nhập</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="input-group remember-me">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Ghi nhớ đăng nhập</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+            <!-- Phần cuối của form đăng nhập -->
+            <p class="auth-switch">
+                <a href="/ForgotPassword">Quên mật khẩu?</a>
+            </p>
+
+            <p class="or-text">-or-</p>
+            <div class="social-login">
+                <div id="g_id_onload"
+                     data-client_id="1074888143379-jchdsie352coge1oh1gp0nmesid9fhmi.apps.googleusercontent.com"
+                     data-callback="handleGoogleLogin"
+                     data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </div>
+            <p class="auth-switch">Chưa có tài khoản? <a href="/Register">Đăng ký ngay</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

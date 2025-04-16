@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<div id="loadingSpinner" class="spinner-overlay" style="display: none;">
+    <div class="spinner"></div>
+</div>
+
+<div class="dashboard">
+    <div th:replace="layout/layout :: sidebar"></div>
+
+    <div class="main" th:fragment="content">
+        <header class="header">
+            <h1>Quản Lý Hồ Sơ Khám Bệnh</h1>
+        </header>
+
+        <!-- Danh sách hồ sơ -->
+        <div id="hoSoKhamBenh" class="section active">
+            <div class="card">
+                <h3><i class="fas fa-notes-medical"></i> Hồ sơ khám bệnh</h3>
+                <button class="btn btn-primary" onclick="openForm('ThemHoSo')"><i class="fas fa-plus"></i> Thêm hồ sơ</button>
+                <table class="member-table" id="medicalRecordList">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ngày khám</th>
+                        <th>Chuẩn đoán</th>
+                        <th>Bác sĩ</th>
+                        <th>Ghi chú điều trị</th>
+                        <th>Ảnh bệnh án</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Dữ liệu sẽ được load bằng JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal Thêm/Sửa hồ sơ -->
+        <div id="formThemHoSo" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeForm('ThemHoSo')">×</span>
+                <h3 id="formTitle">Thêm Hồ Sơ Khám Bệnh</h3>
+                <form id="medicalRecordForm">
+                    <input type="hidden" id="recordId" name="recordId">
+                    <div class="form-group">
+                        <label for="visitDate">Ngày khám:</label>
+                        <input type="date" id="visitDate" name="visitDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="diagnosis">Chuẩn đoán:</label>
+                        <textarea id="diagnosis" name="diagnosis" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="treatment">Ghi chú điều trị:</label>
+                        <textarea id="treatment" name="treatment" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorId">Bác sĩ:</label>
+                        <select id="doctorId" name="doctorId" required>
+                            <option value="">-- Chọn bác sĩ --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="familyId">Thành viên:</label>
+                        <select id="familyId" name="familyId" required>
+                            <option value="">-- Chọn thành viên --</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                        <button type="button" class="btn btn-cancel" onclick="closeForm('ThemHoSo')"><i class="fas fa-times"></i> Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Thêm Ảnh Bệnh Án -->
+        <div id="modalAddImage" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeAddImageModal()">×</span>
+                <h3>Thêm Ảnh Bệnh Án</h3>
+                <!-- load -->
+                <div id="loadingIndicator" style="display: none; text-align: center; margin-top: 10px;">
+                    <i class="fas fa-spinner fa-spin fa-2x text-primary"></i>
+                    <p>Đang tải ảnh lên...</p>
+                </div>
+
+                <form id="addImageForm">
+                    <input type="hidden" id="imageRecordId">
+                    <div class="form-group">
+                        <label for="imageDescription">Mô tả ảnh:</label>
+                        <input type="text" id="imageDescription" name="description" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageFile">Chọn ảnh:</label>
+                        <input type="file" id="imageFile" name="file" accept="image/*" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Tải lên</button>
+                        <button type="button" class="btn btn-cancel" onclick="closeAddImageModal()">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- Modal Xem Ảnh Bệnh Án -->
+        <div id="modalViewImages" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeViewImageModal()">×</span>
+                <h3>Ảnh Bệnh Án</h3>
+                <div id="imageListContainer"></div>
+            </div>
+        </div>
+        <!-- Modal xem ảnh toàn màn hình -->
+        <div id="modalFullScreenImage" class="modal" style="display: none;">
+            <div class="modal-content" style="position: relative;">
+                <span class="close-modal" onclick="closeFullScreenImage()" style="position: absolute; top: 10px; right: 10px; font-size: 2em; cursor: pointer;">×</span>
+                <img id="fullScreenImg" src="" alt="Full Screen" style="width: 100%; height: auto;">
+                <p id="fullScreenDesc"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script defer src="/js/MedicalRecord.js"></script>
+<script defer src="/js/layout.js"></script>
+</body>
+</html>

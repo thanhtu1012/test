@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<div class="dashboard">
+    <div th:replace="layout/layout :: sidebar"></div>
+
+    <div class="main" th:fragment="content">
+        <header class="header">
+            <h1>Quản Lý Hồ Sơ Y Tế Gia Đình</h1>
+        </header>
+
+        <!-- Section: Hồ sơ -->
+        <div id="hoSoYTe" class="section active">
+            <div class="card">
+                <h3><i class="fas fa-user"></i> Hồ sơ cá nhân & gia đình</h3>
+                <button class="btn btn-primary" onclick="openForm('ThemThanhVien')"><i class="fas fa-plus"></i> Thêm thành viên</button>
+                <div id="danhSachThanhVien">
+                    <h4>Danh sách thành viên:</h4>
+                    <table class="member-table" id="memberList">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Quan hệ</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Dữ liệu sẽ được thêm động -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="formThemThanhVien" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeForm('ThemThanhVien')">&times;</span>
+                <h3 id="formTitle">Thêm Thành Viên</h3>
+                <form id="familyForm">
+                    <input type="hidden" id="memberId" name="memberId">
+                    <div class="form-group">
+                        <label for="memberName">Họ và tên:</label>
+                        <input type="text" id="memberName" name="memberName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">Ngày sinh:</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Giới tính:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="relationship">Quan hệ:</label>
+                        <input type="text" id="relationship" name="relationship" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                        <button type="button" class="btn btn-cancel" onclick="closeForm('ThemThanhVien')"><i class="fas fa-times"></i> Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script defer src="/js/home-user.js"></script>
+<script defer src="/js/layout.js"></script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<div class="dashboard">
+    <div th:replace="layout/layout :: sidebar"></div>
+
+    <div class="main" th:fragment="content">
+        <header class="header">
+            <h1>Đổi Mật Khẩu</h1>
+        </header>
+
+        <!-- Section: Đổi mật khẩu -->
+        <div id="doiMatKhau" class="section active">
+            <div class="card">
+                <h3><i class="fas fa-key"></i> Cập nhật mật khẩu</h3>
+                <form id="change-password-form">
+
+                    <div class="form-group">
+                        <label for="current-password">Mật khẩu hiện tại:</label>
+                        <input type="password" id="current-password" name="currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Mật khẩu mới:</label>
+                        <input type="password" id="new-password" name="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Xác nhận mật khẩu mới:</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<!-- Script xử lý form -->
+</body>
+<script defer src="/js/auth.js"></script>
+<script defer src="/js/layout.js"></script>
+
+</html>

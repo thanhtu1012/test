@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<div class="dashboard">
+    <div th:replace="layout/layout :: sidebar"></div>
+
+    <div class="main" th:fragment="content">
+        <header class="header">
+            <h1>Quản Lý Hồ Sơ Chuyển Giao Y Tế</h1>
+        </header>
+
+        <!-- Section 1: Tìm kiếm bác sĩ theo chuyên khoa -->
+        <div id="searchDoctor" class="section active">
+            <div class="card">
+                <h3><i class="fas fa-search"></i> Tìm kiếm bác sĩ theo chuyên khoa</h3>
+                <select id="specialtyDropdown" onchange="searchDoctors()">
+                    <option value="all">Tất cả</option>
+                    <option value="nội khoa">Nội khoa</option>
+                    <option value="ngoại khoa">Ngoại khoa</option>
+                    <option value="nhi khoa">Nhi khoa</option>
+                    <option value="sản">Sản</option>
+                    <option value="da liễu">Da liễu</option>
+                    <!-- Thêm các option khác nếu cần -->
+                </select>
+                <div id="doctorResults">
+                    <h4>Kết quả tìm kiếm:</h4>
+                    <table class="member-table" id="doctorList">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên bác sĩ</th>
+                            <th>Chuyên khoa</th>
+                            <th>Bệnh viện</th>
+                            <th>SĐT</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <!-- Danh sách bác sĩ được load động -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Gửi hồ sơ bệnh án đến bác sĩ gia đình -->
+        <div id="sendRecord" class="section">
+            <div class="card">
+                <h3><i class="fas fa-file-medical"></i> Gửi hồ sơ bệnh án đến bác sĩ gia đình</h3>
+                <form id="sendRecordForm">
+                    <div class="form-group ">
+                        <label for="memberSelect">Chọn thành viên:</label>
+                        <select id="memberSelect" required>
+                            <option value="">-- Chọn thành viên --</option>
+                            <!-- Danh sách thành viên sẽ được load động -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorSelect">Chọn bác sĩ:</label>
+                        <select id="doctorSelect" required>
+                            <!-- Danh sách bác sĩ sẽ được load động -->
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Gửi hồ sơ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Section 3: Xem trạng thái hồ sơ -->
+        <div id="recordStatus" class="section">
+            <div class="card">
+                <h3><i class="fas fa-tasks"></i> Xem trạng thái hồ sơ</h3>
+                <!-- Bộ lọc trạng thái -->
+                <div class="filter-group">
+                    <label for="statusFilter">Lọc theo trạng thái:</label>
+                    <select id="statusFilter" onchange="filterRecords()">
+                        <option value="all">Tất cả</option>
+                        <option value="pending">Chờ xác nhận</option>
+                        <option value="accepted">Đã tiếp nhận</option>
+                        <option value="completed">Hoàn thành</option>
+                    </select>
+                </div>
+                <table class="member-table" id="recordStatusTable">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Thành viên</th> <!-- Đổi từ ID Hồ Sơ sang Thành viên -->
+                        <th>Bác sĩ</th>
+                        <th>Ngày chuyển</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- Danh sách hồ sơ được load động -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script defer src="/js/TransferredRecord.js"></script>
+<script defer src="/js/layout.js"></script>
+</body>
+</html>

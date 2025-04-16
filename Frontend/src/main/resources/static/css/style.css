@@ -1,0 +1,432 @@
+/* ----------------------------- */
+/* 1. Reset & Định dạng cơ bản   */
+/* ----------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Verdana', Geneva, sans-serif;
+    line-height: 1.6;
+}
+
+/* ----------------------------- */
+/* 2. Biến màu (Variables)       */
+/* ----------------------------- */
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --secondary-color: #1B609F;
+    --secondary-light: #2A7BCF;
+    --success-color: #28a745;
+    --cancel-color: #e74c3c;
+    --background-color: #f4f4f9;
+    --card-background: #fff;
+    --text-color: #333;
+}
+
+/* ----------------------------- */
+/* 3. Dashboard Styles           */
+/* ----------------------------- */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: var(--secondary-color);
+    color: white;
+    flex-shrink: 0;
+}
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sidebar-header .logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.sidebar p {
+    font-size: 1rem;
+}
+.nav {
+    list-style: none;
+}
+.nav li {
+    margin: 10px 0;
+}
+.nav li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+.nav li a i {
+    margin-right: 10px;
+}
+.nav li a.active,
+.nav li a:hover {
+    background: var(--secondary-light);
+}
+
+/* Main content */
+.main {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--background-color);
+    overflow-x: auto;
+}
+.header h1 {
+    color: var(--text-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Card */
+.card {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Member Table */
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.member-table th,
+.member-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.member-table th {
+    background: var(--secondary-color);
+    color: #fff;
+}
+.member-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+.member-table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+.btn i {
+    margin-right: 8px;
+}
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+.btn-success {
+    background: var(--success-color);
+    color: #fff;
+}
+.btn-success:hover {
+    background: #218838;
+}
+.btn-cancel {
+    background: var(--cancel-color);
+    color: #fff;
+}
+.btn-cancel:hover {
+    background: #c0392b;
+}
+.btn-edit {
+    background: #f39c12;
+    color: #fff;
+    padding: 6px 12px;
+    margin-right: 5px;
+}
+.btn-edit:hover {
+    background: #e67e22;
+}
+.btn-delete {
+    background: #e74c3c;
+    color: #fff;
+    padding: 6px 12px;
+}
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Nội dung modal căn giữa */
+.modal-content {
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideIn 0.3s ease;
+    margin: auto;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #777;
+}
+.close-modal:hover {
+    color: var(--text-color);
+}
+.modal-content h3 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Modal Fullscreen Image */
+#modalFullScreenImage {
+    display: none; /* Ẩn mặc định */
+}
+#modalFullScreenImage .modal-content {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#modalFullScreenImage img {
+    max-width: 90%;      /* Giới hạn chiều rộng tối đa của ảnh */
+    max-height: 90vh;    /* Giới hạn chiều cao tối đa (90% của viewport height) */
+    object-fit: contain; /* Đảm bảo ảnh co giãn mà không bị cắt */
+    display: block;
+    margin: 0 auto;
+}
+#modalFullScreenImage p {
+    color: #fff;
+    text-align: center;
+    margin: 10px 0;
+}
+#modalFullScreenImage .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+/* Image Items trong modal xem ảnh */
+.image-item {
+    margin-bottom: 20px;
+}
+.image-item img {
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: transform 0.3s;
+}
+.image-item img:hover {
+    transform: scale(1.05);
+}
+.image-item p {
+    margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .member-table th,
+    .member-table td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* style.css (phần bổ sung cho Vaccination.html) */
+.card h3 i {
+    margin-right: 8px;
+}
+#vaccinationTable th,
+#vaccinationTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+#vaccinationTable th {
+    background: var(--secondary-color);
+    color: #fff;
+}
+#vaccinationTable tr:nth-child(even) {
+    background: #f9f9f9;
+}
+#vaccinationTable tr:hover {
+    background: #f1f1f1;
+}
+#vaccinationTable .btn-edit,
+#vaccinationTable .btn-delete {
+    margin-right: 5px;
+}
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.notification-card {
+    background: #f0f0f0;
+    padding: 1rem;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+}
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #007bff;
+}
+.notification-body {
+    margin-top: 0.5rem;
+}
+.nav-notification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.notification-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    display: none;
+}
+.mark-read-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+}
+.mark-read-btn:disabled {
+    background-color: #80cc2b;
+    cursor: default;
+}
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+/* Hiệu ứng xoay */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

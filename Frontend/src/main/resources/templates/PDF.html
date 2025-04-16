@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<div class="dashboard">
+    <div th:replace="layout/layout :: sidebar"></div>
+    <div class="main" th:fragment="content">
+        <header class="header">
+            <h1>Xuất Hồ Sơ Y Tế</h1>
+        </header>
+        <div class="card">
+            <h3><i class="fas fa-file-export"></i> Xuất file thông tin</h3>
+            <select id="memberSelect" class="form-control">
+                <!-- Danh sách thành viên sẽ được load bởi JS -->
+            </select>
+        </div>
+        <button class="btn btn-success" onclick="exportMemberPDF()">
+            <i class="fas fa-file-export"></i> Xuất Hồ Sơ PDF
+        </button>
+    </div>
+</div>
+<!-- Thêm thư viện jsPDF và autotable (nếu cần cho mục đích khác) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<!-- Thêm thư viện html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<!-- File xử lý PDF -->
+<script defer src="/js/PDF.js"></script>
+<script defer src="/js/layout.js"></script>
+</body>
+</html>

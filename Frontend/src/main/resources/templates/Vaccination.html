@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<div class="dashboard">
+  <div th:replace="layout/layout :: sidebar"></div>
+
+  <div class="main" th:fragment="content">
+    <header class="header">
+      <h1>Sổ Tiêm Chủng</h1>
+    </header>
+    <!-- Section: Hồ sơ -->
+    <div id="soTiemChung" class="section active">
+      <div class="card">
+        <h3><i class="fas fa-syringe"></i> Quản lý thông tin tiêm chủng</h3>
+        <button class="btn btn-primary" id="createVaccinationBtn">
+          <i class="fas fa-plus"></i> Thêm Vaccination
+        </button>
+        <div id="danhSachVaccination">
+          <h4>Danh sách vaccinations:</h4>
+          <table class="member-table" id="vaccinationTable">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên Vaccine</th>
+              <th>Tên Thành Viên</th>
+              <th>Ngày Tiêm</th>
+              <th>Trạng Thái</th>
+              <th>Hành Động</th>
+            </tr>
+            </thead>
+            <tbody id="vaccinationTableBody">
+            <!-- Dữ liệu sẽ được thêm động bởi JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!--modal-->
+    <div id="formVaccination" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeVaccinationForm()">×</span>
+        <h3 id="formTitle">Thêm Vaccination</h3>
+        <form id="vaccinationForm">
+          <input type="hidden" id="vaccinationId" name="vaccinationId">
+          <!-- Trường chọn thành viên -->
+          <div class="form-group">
+            <select id="familyMemberSelect" name="familyMemberId" required>
+              <option value="">-- Chọn thành viên --</option>
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="vaccineName">Tên Vaccine:</label>
+            <input type="text" id="vaccineName" name="vaccineName" required>
+          </div>
+          <div class="form-group">
+            <label for="vaccinationDate">Ngày Tiêm:</label>
+            <input type="date" id="vaccinationDate" name="vaccinationDate" required>
+          </div>
+          <div class="form-group">
+            <label for="status">Trạng Thái:</label>
+            <select id="status" name="status" required>
+              <option value="vaccinated">Đã tiêm</option>
+              <option value="not_vaccinated">Chưa tiêm</option>
+              <option value="postponed">Hoãn</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-save"></i> Lưu
+            </button>
+            <button type="button" class="btn btn-cancel" onclick="closeVaccinationForm()">
+              <i class="fas fa-times"></i> Hủy
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script defer src="/js/vaccination.js"></script>
+<script defer src="/js/layout.js"></script>
+</html>

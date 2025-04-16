@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng Ký</title>
+    <!-- FontAwesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <!-- Load EmailJS trước -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Sau khi load xong EmailJS, bạn mới khởi tạo nó
+        emailjs.init('dImg5fwXxvk41MzWu'); // Sử dụng public key của bạn
+    </script>
+    <script defer src="/js/auth.js"></script>
+</head>
+<body>
+<div class="auth-container">
+    <div class="auth-card">
+        <img src="/images/logo2.png" alt="Logo" class="logo">
+        <h2>Đăng Ký</h2>
+        <form id="registerForm" method="post">
+            <div id="loadingIndicator" style="display: none; text-align: center; margin-top: 10px;">
+                <i class="fas fa-spinner fa-spin fa-2x text-primary"></i>
+                <p>Đang xử lý đăng ký...</p>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="fullName" name="fullName" placeholder="Họ và tên" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-users"></i>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Chọn vai trò</option>
+                    <option value="family">Gia đình</option>
+                    <option value="doctor">Bác sĩ</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng Ký</button>
+            <p class="or-text">-or-</p>
+            <p class="auth-switch">Đã có tài khoản? <a href="/Login">Đăng nhập</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

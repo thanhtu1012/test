@@ -1,0 +1,47 @@
+<!-- templates/layout/layout.html -->
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản Lý Hồ Sơ Y Tế</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar" th:fragment="sidebar">
+        </br>
+        <div class="sidebar-header">
+            <img src="/images/logo1.png" alt="Logo Công Ty" class="logo">
+            <h2>Quản Lý Hồ Sơ</h2>
+            <p>Xin chào</p>
+            <p class="user-greeting">Người dùng</p>
+        </div>
+        <ul class="nav">
+            <li><a href="/Home-User" class="nav-link"><i class="fas fa-user"></i> Hồ sơ cá nhân</a></li>
+            <li><a href="/MedicalRecord" class="nav-link"><i class="fas fa-notes-medical"></i> Quản lý thông tin khám chữa bệnh</a></li>
+            <li><a href="/Vaccination" class="nav-link"><i class="fas fa-syringe"></i> Sổ tiêm chủng</a></li>
+            <li><a href="/TransferredRecord" class="nav-link"><i class="fas fa-file-medical"></i> Chuyển hồ sơ đến bác sĩ</a></li>
+            <li><a href="/PDF" class="nav-link"><i class="fas fa-file-export"></i> Xuất file thông tin</a></li>
+            <li>
+                <a href="/Notification" class="nav-link nav-notification">
+                    <span><i class="fas fa-bell"></i> Thông báo</span>
+                    <span id="notificationBadge" class="notification-badge">0</span>
+                </a>
+            </li>
+            <li><a href="/ChangePass" class="nav-link"><i class="fas fa-key"></i> Đổi mật khẩu</a></li>
+            <li><a href="/Login" onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+        </ul>
+    </div>
+
+    <!-- Nội dung trang cụ thể -->
+    <div class="main" th:fragment="main-content">
+        <div th:replace="~{::content}"></div>
+    </div>
+</div>
+</body>
+<script defer src="/js/auth.js"></script>
+<script defer src="/js/layout.js"></script>
+</html>
